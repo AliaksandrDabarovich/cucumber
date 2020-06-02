@@ -7,6 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
     private static WebDriver driver;
+    private static ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
+
 
     private DriverSingleton() {
     }
@@ -17,12 +19,13 @@ public class DriverSingleton {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
-
+                    webDriverThreadLocal.set(driver);
                     break;
                 }
                 case "chrome": {
 //                                        WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    webDriverThreadLocal.set(driver);
                     break;
                 }
                 default: {
@@ -31,12 +34,25 @@ public class DriverSingleton {
             }
             driver.manage().window().maximize();
         }
-        return driver;
+        return webDriverThreadLocal.get();
+    }
+
+
+    public static WebDriver getDriverCucumber() {
+
+        if (null == driver) {
+            driver = new ChromeDriver();
+            webDriverThreadLocal.set(driver);
+            driver.manage().window().maximize();
+        }
+        return webDriverThreadLocal.get();
+
     }
 
     public static void closeDriver() {
         driver.quit();
         driver = null;
+        webDriverThreadLocal.remove();
     }
 
 }

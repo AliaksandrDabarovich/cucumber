@@ -3,6 +3,7 @@ package com.epam.pageobject.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class EmailPage extends AbstractPage {
 
@@ -22,6 +23,9 @@ public class EmailPage extends AbstractPage {
 
     public EmailPage(WebDriver driver) {
         super(driver);
+    }
+    public EmailPage() {
+        super();
     }
 
     public WebElement getSentButton() {
@@ -54,6 +58,11 @@ public class EmailPage extends AbstractPage {
         action.act();
         waitForVisibility(letterToHimself).click();
         return new ActionPage(driver);
+    }
+
+    public boolean isUserLoggedIn(){
+        waitForVisibility(sentButton);
+        return  sentButton != null;
     }
 
 
