@@ -19,8 +19,8 @@ public class ComposeEmailPage extends AbstractPage {
     @FindBy(xpath = "//button[@title='Закрыть' and @class='container--2lPGK type_base--rkphf color_base--hO-yz']")
     WebElement closeButton;
 
-    public ComposeEmailPage(WebDriver driver) {
-        super(driver);
+    public ComposeEmailPage() {
+        super();
     }
 
     public EmailPage composeEmail(User user) {
@@ -33,7 +33,7 @@ public class ComposeEmailPage extends AbstractPage {
         performActionSendkeys(driver, bodyField, BODY);
         saveButton.click();
         closeButton.click();
-        return new EmailPage(driver);
+        return new EmailPage();
     }
 
 

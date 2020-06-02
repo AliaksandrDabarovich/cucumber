@@ -1,5 +1,6 @@
 package com.epam.pageobject.page;
 
+import com.epam.pageobject.driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,13 +17,11 @@ public abstract class AbstractPage {
     protected final String SUBJECT = "WebDriver";
     protected final String BODY = "Text for test";
     protected static Logger log = Logger.getLogger(AbstractPage.class.getName());
+    protected String sendField = "Self: WebDriver";
 
-    protected AbstractPage(WebDriver driver) {
-
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
     protected AbstractPage() {
+        driver = DriverSingleton.getDriver();
+        PageFactory.initElements(driver, this);
 
     }
 
@@ -41,7 +40,7 @@ public abstract class AbstractPage {
 
     public void moveClick(WebDriver driver, WebElement element) {
         Actions action = new Actions(driver);
-        action.moveToElement(element).click().perform();
+         action.moveToElement(element).click().perform();
     }
 
 
@@ -56,6 +55,10 @@ public abstract class AbstractPage {
 
     public String getBody() {
         return BODY;
+    }
+
+    public String getSendField (){
+        return sendField;
     }
 
 }

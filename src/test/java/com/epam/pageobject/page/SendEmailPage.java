@@ -12,8 +12,8 @@ public class SendEmailPage extends AbstractPage {
     WebElement logOutButton;
 
 
-    public SendEmailPage(WebDriver driver) {
-        super(driver);
+    public SendEmailPage() {
+        super();
     }
 
     public WebElement deliverEmail() {
@@ -22,7 +22,7 @@ public class SendEmailPage extends AbstractPage {
 
     public EmailLoginPage logOut() {
         logOutButton.click();
-        return new EmailLoginPage(driver);
+        return new EmailLoginPage();
     }
 
 

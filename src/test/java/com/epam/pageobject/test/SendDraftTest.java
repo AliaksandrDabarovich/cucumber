@@ -10,7 +10,7 @@ public class SendDraftTest extends BaseTest {
     @Test
     public void sendDraft() {
         User testUser = UserCreator.withCredentialsFromProperty();
-        EmailLoginPage emailLoginPage = new EmailLoginPage(driver);
+        EmailLoginPage emailLoginPage = new EmailLoginPage();
         EmailPage emailPage = emailLoginPage.inputCredentials(testUser);
         ComposeEmailPage composeEmailPage = emailPage.composeEmailFromEmailPage();
         EmailPage emailPageAfterCompose = composeEmailPage.composeEmail(testUser);

@@ -13,7 +13,7 @@ public class ProposalTest extends BaseTest {
     public void testProposal() {
 
         User testUser = UserCreator.withCredentialsFromProperty();
-        EmailLoginPage emailLoginPage = new EmailLoginPage(driver);
+        EmailLoginPage emailLoginPage = new EmailLoginPage();
         EmailPage emailPage = emailLoginPage.inputCredentials(testUser);
         ActionPage actionPage = emailPage.openAction();
         Assert.assertTrue(actionPage.checkAction() != null, "Action was not performed");

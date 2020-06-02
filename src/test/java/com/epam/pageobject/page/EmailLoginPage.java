@@ -25,9 +25,6 @@ public class EmailLoginPage extends AbstractPage {
     private WebElement inputEnterButton;
 
 
-    public EmailLoginPage(WebDriver driver) {
-        super(driver);
-    }
     public EmailLoginPage() {
         super();
     }
@@ -48,19 +45,19 @@ public class EmailLoginPage extends AbstractPage {
         inputPasswordField.sendKeys(user.getPassword());
         JSUtils.clickJavascript(driver, inputEnterButton);
         logger.info("User logged in");
-        return new EmailPage(driver);
+        return new EmailPage();
     }
-    public WebElement inputCredentialsCucumber(User user) {
-
-        waitForVisibility(inputEmailField);
-        JSUtils.highlightElement(driver, inputEmailField);
-        performActionSendkeys(driver, inputEmailField, user.getUsername());
-        inputPasswordButton.click();
-        waitForVisibility(inputPasswordField);
-        JSUtils.highlightElement(driver, inputPasswordField);
-        inputPasswordField.sendKeys(user.getPassword());
-        return inputEnterButton;
-    }
+//    public WebElement inputCredentialsCucumber(User user) {
+//
+//        waitForVisibility(inputEmailField);
+//        JSUtils.highlightElement(driver, inputEmailField);
+//        performActionSendkeys(driver, inputEmailField, user.getUsername());
+//        inputPasswordButton.click();
+//        waitForVisibility(inputPasswordField);
+//        JSUtils.highlightElement(driver, inputPasswordField);
+//        inputPasswordField.sendKeys(user.getPassword());
+//        return inputEnterButton;
+//    }
 
 
 }

@@ -8,8 +8,8 @@ public class ActionPage extends AbstractPage {
     @FindBy (xpath = "//div[@class='container--3QXHv']//input[@class='container--H9L5q size_s--3_M-_']")
     WebElement subject;
 
-    public ActionPage (WebDriver driver){
-        super(driver);
+    public ActionPage (){
+        super();
     }
 
     public WebElement checkAction(){

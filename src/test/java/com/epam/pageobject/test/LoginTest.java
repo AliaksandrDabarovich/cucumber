@@ -12,7 +12,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void login () {
         User testUser = UserCreator.withCredentialsFromProperty();
-        EmailLoginPage emailLoginPage = new EmailLoginPage(driver);
+        EmailLoginPage emailLoginPage = new EmailLoginPage();
         EmailPage emailPage = emailLoginPage.inputCredentials(testUser);
         Assert.assertTrue(emailPage.getSentButton() != null, "User is not logged in");
     }

@@ -14,13 +14,13 @@ public class DraftEmailPage extends AbstractPage {
     @FindBy(xpath = "//div[contains (@class,'class')]/div[1]")
     WebElement bodyFieldDraft;
 
-    @FindBy(xpath = "//span[text()='Отправить']")
+    @FindBy(xpath = "//span[contains(@class,'button2 button2_base button2_primary')]")
     WebElement sendButton;
 
 
-    public DraftEmailPage(WebDriver driver) {
+    public DraftEmailPage() {
 
-        super(driver);
+        super();
     }
 
     public WebElement checkToField() {
@@ -40,7 +40,7 @@ public class DraftEmailPage extends AbstractPage {
 
     public AdvertisingPage sendDraft() {
         waitForVisibility(sendButton).click();
-        return new AdvertisingPage(driver);
+        return new AdvertisingPage();
     }
 
 }

@@ -11,7 +11,7 @@ public class ToFieldInDraftTest extends BaseTest {
     @Test
     public void verifyToFieldInDraft() {
         User testUser = UserCreator.withCredentialsFromProperty();
-        EmailLoginPage emailLoginPage = new EmailLoginPage(driver);
+        EmailLoginPage emailLoginPage = new EmailLoginPage();
         EmailPage emailPage = emailLoginPage.inputCredentials(testUser);
         ComposeEmailPage composeEmailPage = emailPage.composeEmailFromEmailPage();
         EmailPage emailPageAfterCompose = composeEmailPage.composeEmail(testUser);

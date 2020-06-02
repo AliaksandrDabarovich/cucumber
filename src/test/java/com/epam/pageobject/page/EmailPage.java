@@ -21,9 +21,6 @@ public class EmailPage extends AbstractPage {
     WebElement letterToHimself;
 
 
-    public EmailPage(WebDriver driver) {
-        super(driver);
-    }
     public EmailPage() {
         super();
     }
@@ -34,30 +31,19 @@ public class EmailPage extends AbstractPage {
 
     public ComposeEmailPage composeEmailFromEmailPage() {
         waitForVisibility(composeButton).click();
-        return new ComposeEmailPage(driver);
+        return new ComposeEmailPage();
     }
 
     public DraftsPage openDraftsPageFromEmailPage() {
         moveClick(driver, draftsButton);
-        return new DraftsPage(driver);
+        return new DraftsPage();
     }
 
     public ActionPage openAction() {
         waitForVisibility(actionButton);
         actionButton.click();
-        ActionFactory actionFactory = new ProposalCallFactory();
-        Action action = actionFactory.createAction();
-        action.act();
         waitForVisibility(letterToHimself).click();
-        return new ActionPage(driver);
-    }
-    public ActionPage openDecoratorAction() {
-        waitForVisibility(actionButton);
-        actionButton.click();
-        Action action = new ActionDecorator(new CustomAction());
-        action.act();
-        waitForVisibility(letterToHimself).click();
-        return new ActionPage(driver);
+        return new ActionPage();
     }
 
     public boolean isUserLoggedIn(){

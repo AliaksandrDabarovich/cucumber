@@ -19,8 +19,8 @@ public class DraftsPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='llc__content']")
     WebElement divOfDraft;
 
-    public DraftsPage(WebDriver driver) {
-        super(driver);
+    public DraftsPage() {
+        super();
     }
 
     public WebElement checkEmailInDrafts() {
@@ -32,7 +32,7 @@ public class DraftsPage extends AbstractPage {
     public DraftEmailPage openDraftEmailPage() {
         waitElement(draftLink);
         waitForVisibility(draftLink).click();
-        return new DraftEmailPage(driver);
+        return new DraftEmailPage();
     }
 
     public WebElement verifyDraftSend() {
@@ -43,7 +43,7 @@ public class DraftsPage extends AbstractPage {
     public SendEmailPage openSendEmailPage() {
         waitElement(sentFolderButton);
         waitForVisibility(sentFolderButton).click();
-        return new SendEmailPage(driver);
+        return new SendEmailPage();
     }
 
 
