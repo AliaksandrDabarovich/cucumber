@@ -2,7 +2,6 @@ package com.epam.pageobject.page;
 
 
 import com.epam.pageobject.model.User;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

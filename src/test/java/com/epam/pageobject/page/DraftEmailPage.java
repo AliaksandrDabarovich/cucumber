@@ -1,6 +1,5 @@
 package com.epam.pageobject.page;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,10 +10,10 @@ public class DraftEmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='container--3QXHv']//input[@class='container--H9L5q size_s--3_M-_']")
     WebElement subjectFieldDraft;
 
-    @FindBy(xpath = "//div[contains (@class,'class')]/div[1]")
+    @FindBy(xpath = "//div[contains (@class,'cl_')]/div[1]")
     WebElement bodyFieldDraft;
 
-    @FindBy(xpath = "//span[contains(@class,'button2 button2_base button2_primary')]")
+    @FindBy(xpath = "//span[text()='Отправить']")
     WebElement sendButton;
 
 

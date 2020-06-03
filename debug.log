@@ -1,0 +1,3 @@
+[0603/204603.210:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0603/204603.211:ERROR:exception_snapshot_win.cc(98)] thread ID 21400 not found in process
+[0603/204603.211:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)

@@ -17,7 +17,7 @@ public class SeandEmailSteps {
     private DraftsPage draftsPageAfterSendingDraft;
     private SendEmailPage sendEmailPage;
 
-    User testUser = new User("aliaksandr.yarkiy@mail.ru", "obuchenie2015");
+    User testUser;
 
 
     @When("the user opens Email page")
@@ -29,6 +29,13 @@ public class SeandEmailSteps {
 
     @When("the user inputs Email and Password")
     public void inputLogin() {
+        testUser= new User("aliaksandr.yarkiy@mail.ru","obuchenie2015");
+        emailPage = emailLoginPage.inputCredentials(testUser);
+    }
+
+    @When("^the user inputs different parameters (.*) and (.*)$")
+    public void inputLogin(String email, String password) {
+        testUser= new User(email, password);
         emailPage = emailLoginPage.inputCredentials(testUser);
     }
 
@@ -46,7 +53,6 @@ public class SeandEmailSteps {
     public void openDraftsPage() {
         draftsPage = emailPageAfterCompose.openDraftsPageFromEmailPage();
     }
-
     @When("the user opens Draft Email page")
     public void openDraft() {
         draftEmailPage = draftsPage.openDraftEmailPage();
@@ -55,11 +61,7 @@ public class SeandEmailSteps {
     public void sendDraft() {
         advertisingPage = draftEmailPage.sendDraft();
     }
-    @When("the user opens Draft after sending Draft")
-    public void openDraftAfterSending() {
-        advertisingPage = draftEmailPage.sendDraft();
-    }
-    @When("the user opens closes Advertising page")
+    @When("the user closes Advertising page")
     public void closeAdvertisingPage() {
         draftsPageAfterSendingDraft = advertisingPage.closeAdvertising();
     }
@@ -71,6 +73,45 @@ public class SeandEmailSteps {
             public void verifyEmailSend(){
         Assertions.assertThat(sendEmailPage.deliverEmail().getText()).isEqualTo(sendEmailPage.getSendField()) .overridingErrorMessage("Email is not delivered");
     }
+    @Then("login is success")
+    public void verifyLoginIsSuccess() {
+        Assertions.assertThat(emailPage.getSentButton()).isNotNull()
+                .overridingErrorMessage("User not logged in");
+    }
+    @Then("body is correct")
+    public void verifyBodyisCorrect() {
+        Assertions.assertThat(draftEmailPage.checkBodyField().getText()).isEqualTo(draftEmailPage.getBody())
+                .overridingErrorMessage("Incorrect Text in Body");
+    }
+    @Then("draft is saved")
+    public void verifyDraftSaved() {
+        Assertions.assertThat(draftsPage.checkEmailInDrafts()).isNotNull()
+                .overridingErrorMessage("Email is not saved in drafts");
+    }
+    @Then("draft is sent")
+    public void verifyDraftSent() {
+        Assertions.assertThat(draftsPageAfterSendingDraft.verifyDraftSend()).isNotNull()
+                .overridingErrorMessage("Draft was not sent");
+    }
+
+    @Then("subject is correct")
+    public void verifySubjectCorrect() {
+        Assertions.assertThat(draftEmailPage.checkSubjectField().getAttribute("value")).isEqualTo(draftEmailPage.getSubject())
+                .overridingErrorMessage("Incorrect Subject in the Draft");
+    }
+    @Then("To is correct")
+    public void verifyToCorrect() {
+        Assertions.assertThat(draftEmailPage.checkToField().getText()).isEqualTo(testUser.getUsername())
+                .overridingErrorMessage("Incorrect Email");
+    }
+
+
+
+
+
+
+
+
 
 
 }
